@@ -1,0 +1,34 @@
+* {
+    border: 1px dotted red;
+}
+header {
+    width: 300px;
+    height: 200px;
+    /* width es ancho fijo, max-width se adapta */
+    max-width: 300px; 
+}
+h1 {
+    color: red;
+    width: 50%;
+}
+p {
+    font-size: 1rem;
+    padding: 1rem;
+}
+section {
+    font-size: 30px;
+}
+h3 {
+    font-size: 0.5em;
+}
+
+/* Colores */
+h2 {
+    color: #ffc0cb
+}
+h3 {
+    color: rgb(0, 128, 0, .5);
+}
+p {
+    background-color: hsl(0, 0%, 50%);
+}

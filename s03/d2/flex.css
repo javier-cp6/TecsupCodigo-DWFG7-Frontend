@@ -1,0 +1,50 @@
+/* reset: quitar valores default */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* temp */
+    border: 1px solid red;
+}
+/* padre */
+.menu {
+    height: 450px;
+    background: aquamarine;
+    /* flex */
+    display: flex;
+    /* direction: row(default), column */
+    flex-direction: row;
+    /* horizontal */
+    /* space-between, space-around, space-evenly, center */
+    justify-content: space-evenly;
+    /* vertical */
+    align-items: center;
+    /* wrap */
+    /* flex-wrap: wrap; */
+}
+.link {
+    background-color: steelblue;
+    color: white;
+    height: 50px;
+    width: 100px;
+}
+
+/* grow / shrink se aplica a los hijos */
+/* nth-of-type(n) n=número */
+.link:nth-of-type(3) {
+    background: crimson;
+    /* flex-grow: 4; */
+}
+.link:nth-of-type(3) {
+    background: purple;
+    /* flex-grow: 1; */
+}
+.link:nth-of-type(2) {
+    background: yellow;
+    color: black;
+    flex-shrink: 8;
+}
+.link:nth-of-type(6) {
+    background: black;
+    flex-shrink: 4;
+}

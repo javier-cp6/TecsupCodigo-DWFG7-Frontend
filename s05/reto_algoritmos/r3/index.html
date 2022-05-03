@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de productos</title>
+
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+    <header>
+        <h1>Inventario de productos</h1>
+    </header>
+    <main>
+        <section class="inventario">
+            <h2 id="indicaciones">Haga click para agregar un producto</h2>
+            <ul class="choices">
+                <li>
+                    <div class="nombre">Toner</div>
+                    <button onclick="buscar('toner')">
+                        <!-- <a href="https://www.flaticon.com/free-icons/toner" title="toner icons">Toner icons created by Freepik - Flaticon</a> -->
+                        <img src="./img/toner.png" alt="toner">
+                    </button>
+                    <div class="cantidad" id="toner">00</div>
+                </li>
+                <li>
+                    <div class="nombre">Cabezal</div>
+                    <button onclick="buscar('cabezal')">
+                        <!-- <a href="https://www.flaticon.com/free-icons/3d" title="3d icons">3d icons created by Freepik - Flaticon</a> -->
+                        <img src="./img/cabezal.png" alt="cabezal">
+                    </button>
+                    <div class="cantidad" id="cabezal">00</div>
+                </li>
+                <li>
+                    <div class="nombre">Tinta</div>
+                    <button onclick="buscar('tinta')">
+                        <!-- <a href="https://www.flaticon.com/free-icons/ink" title="ink icons">Ink icons created by Freepik - Flaticon</a> -->
+                        <img src="./img/tinta.png" alt="tinta">
+                    </button>
+                    <div class="cantidad" id="tinta">00</div>
+                <li>
+                    <div class="nombre">Total</div>
+                    <button id="total" onclick="mostrarTotal()"><img src="./img/warehouse.png" alt="almacén"></button>
+                    <div class="cantidad" id="cantTotal">00</div>
+                </li>
+            </ul>
+            <p id="nota_unidades">Las cantidades se muestran en unidades</p>
+        </section>
+        <section>
+
+        </section>
+
+    </main>
+    <!-- solución 1: inventario de productos desde consola -->
+    <!-- <script src="./script1.js"></script> -->
+
+    <!-- solución 2: página de inventario productos -->
+    <script src="./script2.js"></script>
+</body>
+
+</html>

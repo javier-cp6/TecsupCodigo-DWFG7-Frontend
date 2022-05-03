@@ -1,0 +1,37 @@
+/* cuando se utiliza el símbolo > se hace referencia a los hijos inmediatos */
+ol > li {
+    color: purple;
+}
+
+#importante {
+    color: green;
+}
+ul > li {
+    color: orangered;
+}
+
+/* sin el símbolo >, todos los elementos debajo del padro van a tomar estas propiedades */
+.heading h1 {
+    background-color: aquamarine;
+}
+
+.textos p {
+    color: blueviolet;
+}
+
+.textos > p {
+    background-color: chocolate;
+}
+
+/* PSEUDOCLASES */
+/* odd = impares, even = pares */
+tbody tr:nth-of-type(odd) {
+    background-color: lightgray;
+}
+tbody tr:nth-of-type(even) {
+    background: gray;
+}
+tbody tr:hover {
+    background-color: lightblue;
+    cursor:pointer;
+}

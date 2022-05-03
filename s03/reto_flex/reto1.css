@@ -1,0 +1,114 @@
+/* variables de inicio */
+:root {
+    --black1:#0D1C23;
+    --blue1:#88BCD2;
+    --green1:#69a88d;
+}
+/* reset */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+header {
+    text-align: center;
+    margin-top: 1em;
+    color: var(--black1);
+}
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start; /*default-stretch*/
+    /* align-items: center; */
+}
+/* menu */
+.menu {
+    width: 620px;
+    height: 280px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+    /* temp */
+    /* border: 1px solid blue; */
+}
+/* button groups */
+.main-buttons, .opciones {
+    width: 100%;
+    /* temp */
+    /* border: 1px solid red; */
+    /*  */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* buttons */
+.main-buttons button {
+    width: 120px;
+    height: 160px;
+    color:var(--blue1);
+    background: var(--black1);
+    font-size: 18px;
+    border: none;
+    /* margin: 30px; */
+}
+.opciones button {
+    width: 80px;
+    height: 80px;
+    border: none;
+    color: var(--black1);
+    background: var(--blue1);
+    font-size: 14px;
+    /* margin: 10px; */
+}
+button:hover {
+    cursor:pointer;
+    font-weight: bold;
+}
+.main-buttons button:hover {
+    background: var(--green1);
+    color: white;
+}
+.opciones button:hover {
+    background: var(--black1);
+    color: white;
+}
+
+/* media queries */
+@media screen and (max-width:480px) {
+    /* menu */
+    .menu {
+        width: 100vw;
+        height: 50vh;
+        /* display: flex; */
+        /* flex-wrap: wrap; */
+        /* justify-content: center; */
+        align-content: stretch;
+    }
+    /* main-buttons */
+    .main-buttons {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .opciones {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: space-around;
+    }
+    /* buttons */
+    .opciones button {
+        margin: 0 15px;
+    }
+}
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>boxmodel</title>
+
+    <style>
+        * {
+            border: 1px solid red;
+            padding: 0;
+            margin: 0;
+            /* border-box: dimensiones (width, heigth) consideran el borde (no incluye margen). Por defecto content-box (no sonsidera padding ni border) (*/
+            box-sizing: border-box;
+        }
+        h1 {
+            width: 300px;
+            padding: 10px;
+        }
+        span {
+            width: 500px;
+        }
+        label {
+            display: block;
+            width: 100px;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <header>
+        <h1>Título</h1>
+        <h2>Subtítulo</h2>
+    </header>
+    <main>
+        <section>
+            <h2>Título Sección 1</h2>
+            <p>Lorem ipsum dolor sit <span>amet</span> consectetur adipisicing.</p>
+        </section>
+        <section>
+            <h2>Título Sección 2</h2>
+        </section>
+    </main>
+</body>
+</html>

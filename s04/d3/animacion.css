@@ -1,0 +1,70 @@
+.dinho {
+    box-sizing: border-box;
+    width: 150px;
+    margin: 10px;
+    background: transparent;
+    animation-name: volar;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function:ease-out;
+}
+
+@keyframes volar {
+    /* asignar frames */
+    /* selectorkeyframes son valores porcentuales de la duración de la transición: de 0 a 100 % */
+    /* los valores porcentaluales consideran al finalizar el efecto */
+    /* 00 sin movimiento */
+    0% {
+        transform: translate(0, 0);
+    }
+    /* moverse 200px en X */
+    10% {
+        transform: translate(50vw, 0);
+    }
+    15% {
+        transform: translate(50vw, 0) rotate(360deg);
+    }
+    25% {
+        transform: translate(calc(100vw - 180px), 0) rotate(360deg);
+    }
+    30% {
+    transform: translate(calc(100vw - 180px), 0px) rotate(360deg) rotateY(180deg);
+    }
+    50% {
+        transform: translate(calc(100vw - 180px), calc(100vh - 150px)) rotate(360deg) rotateY(180deg) ;
+    }
+    75% {
+        transform: translate(0px, calc(100vh - 170px)) rotate(360deg) rotateY(180deg) ;
+    }
+    80% {
+        transform: translate(0px, calc(100vh - 150px)) rotate(360deg);
+    }
+    100% {
+        transform: translate(0px, 0px) rotate(360deg);
+    }
+
+    /* 10% {
+        transform: translate(200px, 0);
+    }
+    15% {
+        transform: translate(200px, 0) rotate(360deg);
+    }
+    25% {
+        transform: translate(500px, 0) rotate(360deg);
+    }
+    30% {
+    transform: translate(500px, 0px) rotate(360deg) rotateY(180deg);
+    }
+    50% {
+        transform: translate(500px, 500px) rotate(360deg) rotateY(180deg) ;
+    }
+    75% {
+        transform: translate(0px, 500px) rotate(360deg) rotateY(180deg) ;
+    }
+    80% {
+        transform: translate(0px, 500px) rotate(360deg);
+    }
+    100% {
+        transform: translate(0px, 0px) rotate(360deg);
+    } */
+}

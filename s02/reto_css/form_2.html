@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario 2</title>
+
+    <link rel="stylesheet" href="main2.css">
+</head>
+<body>
+    <div>
+        <form>
+            <h2>Sign Up</h2>
+            <label>First name</label>
+            <input type="text" name="name" minlength="7" required>
+            <label>Age</label>
+            <input type="number" name="age" max="120" required>
+            <label>Income</label>
+            <input type="text" name="income" minlength="7">
+            <label>More Info</label>
+            <textarea name="more_info" cols="30" rows="3"></textarea>
+            <div>
+                <label>Gender</label>
+                <br>
+                <input type="radio" name="gender" value="male" required>Male
+                <input type="radio" name="gender" value="Female">Female
+                <input type="radio" name="gender" value="Trans">Trans
+            </div>
+            <label>Plan</label>
+            <br>
+            <select required>
+                <option value="">Select Plan</option>
+                <option value="12m">12-month subscription USD 119</option>
+                <option value="6m">6-month subscription USD 89</option>
+                <option value="3m">3-month subscription USD 59</option>
+            </select>
+            <br>
+            <input type="checkbox">
+            <label style="font-weight: normal;">Susbcribe to Newsletter</label>
+            <br>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</body>
+</html>

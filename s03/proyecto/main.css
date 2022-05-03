@@ -1,0 +1,229 @@
+/* variables, inicio */
+:root {
+    --color1:#2091f9;
+    --color2:#eb2d7f;
+    --color3: #252b42;
+}
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+    font-family: 'Open Sans', sans-serif;
+    /* temp */
+    /* border: 1px solid pink; */
+    /* color: var(--color1); */
+}
+
+header {
+    /* background-image */
+    background-image: url("./img/header_img.webp");
+    background-position: center;
+    background-size: cover;
+    color: white;
+    position: relative;
+    min-height: 85vh;
+}
+
+.menu-principal {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 39;
+}
+
+
+/* generales */
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+
+.links, 
+.social {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 150px;
+    /* filter, tiene varios valores para imágenes */
+    /* drop-shadow añade sombra si es transparente */
+    /* drop-shadow (despX despY tamaño color) */
+    filter: drop-shadow(0 0 3px white);
+}
+
+.links li {
+    margin-right: 15px;
+}
+.links a {
+    color: white;
+}
+.social li {
+    margin-left: 15px;
+}
+.contenido-header {
+    padding: 100px;
+    text-align: center;
+}
+.contenido-header > * {
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 29;
+}
+
+.onda {
+    position: absolute;
+    bottom: 0;
+    z-index: 19;
+}
+.filtro-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* gradiente */
+    /* background-image: linear-gradient(degrees, colors) */
+    background-image: linear-gradient(45deg, var(--color1), var(--color2));
+    opacity: 0.5;
+    z-index: 9;
+
+}
+.contenedor {
+    max-width: 1000px;
+    /* para margin y padding */
+    /* margin: arriba-abajo der-izq */
+    margin: 0 auto;
+}
+section {
+    margin-bottom: 120px;
+}
+
+button {
+    border: 0;
+    /* redondeado de borde */
+    border-radius: 20px;
+    padding: 10px 25px;
+    color: white;
+    background-color: var(--color1);
+}
+button:hover {
+    background-color: var(--color2);
+    /* grosor de fuente */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* section conócenos 23.03*/
+.conocenos {
+    text-align: center;
+}
+.conocenos h2 {
+    margin: 20px;
+}
+.caracteristicas {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 20px;
+}
+.tarjeta {
+    width: 25%;
+}
+
+.tarjeta p {
+    padding: 10px;
+}
+
+/* section lenguajes */
+.lenguajes {
+    display: flex;
+}
+.lenguaje-texto {
+    padding: 30px;
+}
+.lenguaje-texto * {
+    margin-top: 20px;
+} 
+.pc {
+    max-width: 500px;
+}
+
+/* formulario */
+.registro {
+    padding: 40px;
+}
+.registro input {
+    padding: 10px 20px;
+    border-radius: 30px;
+    width: 80%
+}
+.registro button {
+    width: 15%;
+}
+.registro > * {
+    margin-bottom: 20px;
+}
+
+/* footer */
+footer {
+    min-height: 250px;
+    background: var(--color3);
+    color: white;
+}
+footer .contenedor {
+    display: flex;
+    padding: 40px;
+    justify-content: space-between;
+}
+.card-footer {
+    width: 25%;
+}
+.card-footer h3 {
+    margin-bottom: 20px;
+}
+
+/* media queries */
+@media screen and (max-width:578px) {
+    header {
+        max-height: 70%;
+    }
+    .contenido-header {
+        padding: 40px;
+    }
+
+    .caracteristicas {
+        flex-direction: column;
+    }
+    .tarjeta {
+        width: 100%;
+    }
+    .tarjeta h5 {
+        /* font-size responsive */
+        /* calc(tamaño mínimo + porción del ancho */
+        font-size: calc(12px + 1.25vw);
+    }
+    #video-youtube {
+        width: 100vw;
+    }
+    .lenguajes {
+        flex-direction: column;
+    }
+    .lenguajes-imagen {
+        text-align: center;
+    }
+    .pc {
+        width: 90%;
+    }
+    footer .contenedor {
+        flex-direction: column;
+    }
+    .card-footer {
+        width: 100%;
+    }
+}
