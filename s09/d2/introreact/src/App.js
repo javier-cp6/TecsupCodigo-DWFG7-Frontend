@@ -10,6 +10,7 @@
 
 // importar hook useState from react
 import {useState} from "react"
+import List from "./components/List";
 
 const App = () => {
   console.log("log dentro de App")
@@ -24,6 +25,8 @@ const App = () => {
     return "Hola desde función"
   }
 
+  let subtitle = "List subtítulo con props"
+
   return (
     <>
       <div>
@@ -37,21 +40,20 @@ const App = () => {
         <p>Adiós!</p>
         <p>Contador useState: {contador}</p>
       </div>
-
-      {/* en react no se requiere addEventListener, directamente onClick */}
-      {/* no es posible modificar un estado directamente, sino a través de la función del useState (setContador) */}
-      {/* <button onClick={() => {contador ++}}>
-        Aumentar
-      </button> */}
-      <button onClick={() => {setContador(contador++)}}>
+      <button onClick={() => {setContador(contador + 1)}}>
         Aumentar!
       </button>
+      <hr />
+
+      <List />
+      <List subtitulo={subtitle}/>
+      <List subtitulo="subtitulo 2"/>
+      <List subtitulo="subtitulo 3"/>
+      <List subtitulo={6}/>
       {/* Ojo! en react se requiere cerrar todas las etiquetas con /> */}
     </>
   )
-
 }
-
 export default App
 
 
