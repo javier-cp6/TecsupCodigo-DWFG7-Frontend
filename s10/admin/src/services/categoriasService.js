@@ -20,6 +20,8 @@ export {
 }
 */
 
+
+// alternativa 1: usando promise
 // agregar {data, status}
 const obtenerCategorias = () => {
     return new Promise ((resolve, reject) => {
@@ -37,6 +39,24 @@ const obtenerCategorias = () => {
         }) 
     })
 }
+
+/*
+// alternativa 2: directa con axios
+const obtenerCategorias = () => {
+    return axios.get(URL)
+        .then(({data, status}) => {
+            // validar status ok
+            if(status === 200) {
+                return data
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+            throw error
+        }) 
+}
+*/
+
 
 const crearCategoria = async (nuevaCategoria) => {
     try {
