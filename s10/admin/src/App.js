@@ -38,6 +38,7 @@ import CrearCategoriaView from "./views/CrearCategoriaView"
 import Navigation from "./components/Navigation"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import LugaresView from "./views/LugaresView"
+import CrearLugarView from "./views/CrearLugarView"
 
 export default function App() {
   // <> = fragment
@@ -51,6 +52,7 @@ export default function App() {
             <Route path="/" element={<DashboardView />} />
             <Route path="/crearcategoria" element={<CrearCategoriaView />} />
             <Route path="/lugares" element={<LugaresView />} />
+            <Route path="/crearlugar" element={<CrearLugarView />} />
           </Routes>
         </div>
       </Router>

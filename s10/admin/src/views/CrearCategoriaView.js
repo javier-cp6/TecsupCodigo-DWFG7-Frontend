@@ -9,6 +9,9 @@ export default function CrearCategoriaView() {
       cat_desc:""
   })
 
+  //   similar a un new Navigate()
+  const navigate = useNavigate()
+
   const manejarInput = (e) => {
     console.log("NAME", e.target.name)
     console.log("VALUE", e.target.value)
@@ -19,9 +22,6 @@ export default function CrearCategoriaView() {
         [e.target.name]:e.target.value
     })
   }
-
-//   similar a un new Navigate()
-  const navigate = useNavigate()
 
   const manejarSubmit = async (e) => {
       e.preventDefault();
