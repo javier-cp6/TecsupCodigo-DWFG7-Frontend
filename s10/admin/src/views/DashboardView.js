@@ -1,41 +1,6 @@
-// rfc para crear proyecto con extensión ES7
-
 import { useState, useEffect } from "react"
 import { obtenerCategorias } from "../services/categoriasService"
 
-/*1.
-export default function DashboardView() {
-    const [categorias, setCategorias] = useState([]);
-
-    useEffect(() => {
-        obtenerCategorias()
-    })
-
-  return (
-    <div>DashboardView</div>
-  )
-}
-*/
-
-/*2.
-export default function DashboardView() {
-    const [categorias, setCategorias] = useState([]);
-
-    useEffect(() => {
-        obtenerCategorias()
-        .then((data) => {
-            setCategorias(data)
-        })
-        // si le damos como argumento al useEffect un array vacío [], solamente se ejecutará una vez en el montaje. De lo contrario, se generaría un bucle infinito
-    }, [])
-
-  return (
-    <div>DashboardView</div>
-  )
-}
-*/
-
-// 3. modificar el JSX
 export default function DashboardView() {
     const [categorias, setCategorias] = useState([]);
 

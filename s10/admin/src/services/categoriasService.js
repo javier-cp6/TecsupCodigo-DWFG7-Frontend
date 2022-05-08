@@ -2,7 +2,9 @@
 import axios from "axios"
 
 const URL = "https://62731e366b04786a09017eb6.mockapi.io/categorias"
+
 /*
+// sintaxis con promise
 const obtenerCategorias = () => {
     return new Promise ((resolve, reject) => {
         axios.get(URL)
@@ -14,13 +16,12 @@ const obtenerCategorias = () => {
         }) 
     })
 }
-
 export {
     obtenerCategorias
 }
 */
 
-
+/*
 // alternativa 1: usando promise
 // agregar {data, status}
 const obtenerCategorias = () => {
@@ -39,9 +40,11 @@ const obtenerCategorias = () => {
         }) 
     })
 }
+*/
 
-/*
 // alternativa 2: directa con axios
+// axios.get(URL) devuelve una promesa que se resolverá como un objeto con las propiedades data[] y status
+// console.log(axios.get(URL))
 const obtenerCategorias = () => {
     return axios.get(URL)
         .then(({data, status}) => {
@@ -55,8 +58,6 @@ const obtenerCategorias = () => {
             throw error
         }) 
 }
-*/
-
 
 const crearCategoria = async (nuevaCategoria) => {
     try {
