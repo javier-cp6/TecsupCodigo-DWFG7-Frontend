@@ -3,20 +3,22 @@ import { obtenerCategorias } from '../services/categoriasService';
 import { crearLugar } from '../services/lugaresService';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet"
+import { MapContainer, TileLayer, Marker, useMapEvents, Popup } from "react-leaflet"
+import { app } from '../config/firebaseConfig';
 
 export default function CrearLugarView() {
     const [inputs, setInputs] = useState({
         lug_nom:"",
         lug_desc:"",
         lug_dir:"",
-        categoriaId:1
+        categoriaId:1,
+        lug_coords: [-12.018, -77.005]
     })
 
     const [categorias, setCategorias] = useState([])
     
     // estado para marcador de mapa [lat, long]
-    const [marcador, setMarcador] = useState([-12, -77])
+    // const [marcador, setMarcador] = useState([-12, -77])
 
     const navigate = useNavigate()
 
@@ -61,8 +63,12 @@ export default function CrearLugarView() {
             click: (e) => {
                 // revisar el objeto que trae lat y lng
                 console.log(e)
-                const {lat, lng} = e.latlng
-                setMarcador([lat, lng])
+                const {lat, lng} = e.latlng;
+                setInputs({
+                    ...inputs,
+                    lug_coords:[lat, lng]
+                })
+                // setMarcador([lat, lng])
             }
         })
     }
@@ -150,7 +156,7 @@ export default function CrearLugarView() {
                 </div>
 
                 <MapContainer
-                    center={[-12, -77]}
+                    center={inputs.lug_coords}
                     zoom={15}
                     style={{height:"400px"}}
                 >
@@ -158,7 +164,11 @@ export default function CrearLugarView() {
                     <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     <AddMarker />
-                    <Marker position={marcador} />
+                    <Marker position={inputs.lug_coords}>
+                        <Popup>
+                            Información del Lugar {inputs.lug_nom}
+                        </Popup>
+                    </Marker>
                 </MapContainer>
 
                 <button 
