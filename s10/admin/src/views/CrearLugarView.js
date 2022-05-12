@@ -1,10 +1,13 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useRef} from 'react'
 import { obtenerCategorias } from '../services/categoriasService';
 import { crearLugar } from '../services/lugaresService';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { MapContainer, TileLayer, Marker, useMapEvents, Popup } from "react-leaflet"
-import { app } from '../config/firebaseConfig';
+import {subirArchivo} from "../config/fireStorage"
+
+
+let miArchivo = null
 
 export default function CrearLugarView() {
     const [inputs, setInputs] = useState({
@@ -19,6 +22,13 @@ export default function CrearLugarView() {
     
     // estado para marcador de mapa [lat, long]
     // const [marcador, setMarcador] = useState([-12, -77])
+
+    // agregado el 11.05
+    const inputFile = useRef()
+    const manejarFile = (e) => {
+        console.log("manejarFile", e.target.files)
+        miArchivo = e.target.files[0]
+    }
 
     const navigate = useNavigate()
 
@@ -35,7 +45,10 @@ export default function CrearLugarView() {
     const manejarSubmit = async (e) => {
         e.preventDefault()
         try {
-            await crearLugar(inputs)
+            // aregado el 11.05
+            // await crearLugar(inputs)
+            const archivoSubido = await subirArchivo(miArchivo)
+            console.log({archivoSubido})
             Swal.fire({
                 icon:"success",
                 title:"Lugar creado!"
@@ -153,6 +166,17 @@ export default function CrearLugarView() {
                             </option>
                         ))}
                     </select>
+                </div>
+
+                {/* agregado el 11.05 */}
+                <div className="mb-3">
+                    <label className="form-label">
+                        Seleccione imagen
+                    </label>
+                    <input 
+                        type="file" className="form-control"
+                        ref={inputFile}
+                        onChange={(e) => {manejarFile(e)} } />
                 </div>
 
                 <MapContainer
