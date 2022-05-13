@@ -25,7 +25,44 @@ const crearLugar = async(nuevoLugar) => {
         throw error
     }
 }
+
+// 12.05
+const obtenerLugarPorId = async(idCat, idLugar) => {
+    try {
+        const endpoint = `${URL}/categorias/${idCat}/lugares/${idLugar}`
+        const { data, status } = await axios.get(endpoint)
+        if(status === 200){
+            return data
+        }else{
+            throw Error("Error al obtener el lugar")
+        } 
+    } catch (error) {
+        throw error
+    }
+}
+
+const editarLugar = async(idCat, idLugar, lugarEditado) => {
+    try {
+        const headers = {
+            "Content-Type":"application/json"
+        }
+        const endpoint = `${URL}/categorias/${idCat}/lugares/${idLugar}`
+        const { data, status } = await axios.get(endpoint, lugarEditado, { headers})
+        console.log(status)
+        if(status === 200){
+            return data
+        }else{
+            throw Error("Error al editar el lugar")
+        } 
+    } catch (error) {
+        throw error
+    }
+}
+
+
 export {
-    crearLugar
+    crearLugar,
+    obtenerLugarPorId,
+    editarLugar
 }
 

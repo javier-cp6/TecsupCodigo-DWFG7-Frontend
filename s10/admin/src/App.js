@@ -21,6 +21,7 @@ import Navigation from "./components/Navigation"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import LugaresView from "./views/LugaresView"
 import CrearLugarView from "./views/CrearLugarView"
+import EditarLugarView from "./views/EditarLugarView"
 
 export default function App() {
   // <> = fragment
@@ -35,6 +36,9 @@ export default function App() {
             <Route path="/crearcategoria" element={<CrearCategoriaView />} />
             <Route path="/lugares" element={<LugaresView />} />
             <Route path="/crearlugar" element={<CrearLugarView />} />
+
+            {/* al declarar path="/direccion/:param" se está indicando que en esa dirección se va a recibir un parámetro */}
+            <Route path="/editarlugar/:idCat/:idLugar" element={<EditarLugarView />} />
           </Routes>
         </div>
       </Router>

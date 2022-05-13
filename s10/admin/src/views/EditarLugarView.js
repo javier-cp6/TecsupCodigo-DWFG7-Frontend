@@ -1,16 +1,17 @@
 import {useEffect, useState, useRef} from 'react'
 import { obtenerCategorias } from '../services/categoriasService';
-import { crearLugar } from '../services/lugaresService';
+import { crearLugar, obtenerLugarPorId } from '../services/lugaresService';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { MapContainer, TileLayer, Marker, useMapEvents, Popup } from "react-leaflet"
 import {subirArchivo} from "../config/fireStorage"
 import Cargando from "../components/Cargando"
+import {useParams} from "react-router-dom"
 
 
 let miArchivo = null
 
-export default function CrearLugarView() {
+export default function EditarLugarView() {
     const [inputs, setInputs] = useState({
         lug_nom:"",
         lug_desc:"",
@@ -36,6 +37,8 @@ export default function CrearLugarView() {
     }
 
     const navigate = useNavigate()
+
+    const { idCat, idLugar } = useParams()
 
     const manejarInputs = (e) => {
         // console.log(e.target.name, e.target.value)
@@ -104,6 +107,7 @@ export default function CrearLugarView() {
     useEffect(() => {
         const getCategorias = async () => {
             try {
+                // aquí se obtienen las categorías
                 const categoriasObtenidas = await obtenerCategorias()
                 // console.log({categoriasObtenidas}) // array de objetos (categorías)
                 // solamente se requiere id y nom
@@ -113,6 +117,11 @@ export default function CrearLugarView() {
                 })
                 // console.log({infoCategorias}) // array de objetos
                 setCategorias(infoCategorias)
+
+                // después se obtiene el lugar a editar
+                const lugarAEditar = await obtenerLugarPorId(idCat, idLugar)
+                console.log({lugarAEditar})
+                setInputs(lugarAEditar)
             } catch (error) {
                 console.log(error)
             }
