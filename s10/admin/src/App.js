@@ -14,14 +14,19 @@ export default function App() {
 }
 */
 
+// componentes globales
 import "bootstrap/dist/css/bootstrap.min.css"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+
+// Views
 import DashboardView from './views/DashboardView'
 import CrearCategoriaView from "./views/CrearCategoriaView"
-import Navigation from "./components/Navigation"
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import LugaresView from "./views/LugaresView"
 import CrearLugarView from "./views/CrearLugarView"
 import EditarLugarView from "./views/EditarLugarView"
+
+// Componentes
+import Navigation from "./components/Navigation"
 
 export default function App() {
   // <> = fragment
