@@ -13,13 +13,12 @@ export default function CrearCategoriaView() {
     const navigate = useNavigate()
 
     const manejarInput = (e) => {
-        console.log("NAME", e.target.name)
-        console.log("VALUE", e.target.value)
+        console.log("NAME", e.target.name, "VALUE", e.target.value)
         setInput({
             // spread operator para modificar propiedades del objeto input
             ...input,
             // [e.target.name]:e.target.value es un truco para trabajar con varios estados (input)
-            // p. ej. e.target.name = "cat_nom" modifica el valor de "cat_nom
+            // p. ej. e.target.name = "cat_nom" modifica el valor de "cat_nom"
             [e.target.name]:e.target.value
         })
     }
