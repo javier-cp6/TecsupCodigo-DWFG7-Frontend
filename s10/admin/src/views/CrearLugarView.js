@@ -93,11 +93,11 @@ export default function CrearLugarView() {
                 // revisar el objeto que trae lat y lng
                 console.log(e)
                 const {lat, lng} = e.latlng;
+                // setMarcador([lat, lng])
                 setInputs({
                     ...inputs,
                     lug_coords:[lat, lng]
                 })
-                // setMarcador([lat, lng])
             }
         })
     }
@@ -212,6 +212,7 @@ export default function CrearLugarView() {
                     <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     <AddMarker />
+                    {/* <Marker position={marcador} /> */}
                     <Marker position={inputs.lug_coords}>
                         <Popup>
                             Información del Lugar {inputs.lug_nom}
