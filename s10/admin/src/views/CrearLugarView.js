@@ -21,17 +21,15 @@ export default function CrearLugarView() {
 
     const [categorias, setCategorias] = useState([])
 
-    // 12.05
     const [loading, setLoading ] = useState(false)
 
-    
     // estado para marcador de mapa [lat, long]
     // const [marcador, setMarcador] = useState([-12, -77])
 
     // agregado el 11.05
     const inputFile = useRef()
     const manejarFile = (e) => {
-        console.log("manejarFile", e.target.files)
+        console.log("manejarFile", e)
         miArchivo = e.target.files[0]
     }
 
@@ -50,15 +48,14 @@ export default function CrearLugarView() {
     const manejarSubmit = async (e) => {
         e.preventDefault()
         try {
-            // 12.05
             // setLoading antes de ejecutar las funciones para subir un archivo y crear lugar
             setLoading(true)
 
             // aregado el 11.05
             const archivoSubido = await subirArchivo(miArchivo)
-            console.log({archivoSubido})
+            console.log({archivoSubido}) // url de Firebase
+            
             // await crearLugar(inputs)
-            // 12.05
             await crearLugar({...inputs, lug_img:archivoSubido})
 
             setLoading(false)
@@ -121,11 +118,10 @@ export default function CrearLugarView() {
         getCategorias()
     }, [])
 
-    // 12.5
     // renderizado condicional
     // if(loading) debe ir después del useEffect
     if(loading){
-        // en caso el estado loading sea true, en vezde retornar el componente..., retornará el componente Carngando
+        // en caso el estado loading sea true, en vez de retornar el componente con el form, retornará el componente Cargando
         return <Cargando />
     }
 

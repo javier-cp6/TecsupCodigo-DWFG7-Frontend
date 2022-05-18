@@ -1,5 +1,5 @@
 import { storage } from "./firebaseConfig";
-import { ref,uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid"
 
 
@@ -7,10 +7,10 @@ import { v4 } from "uuid"
 const subirArchivo = (archivo) => {
     // se complica utilizar async/await porque está manejado con callbacks
     return new Promise ((resolve, reject) => {
-        // 12.05
         const extension = archivo.type.split("/")[1]
         console.log({extension})
         const nombreUUID = v4()
+
         // referencia de dirección y nombre del archivo a guardar
         // const referenciaStorage = ref(storage, `fotos/miFoto.jpg`)
         const referenciaStorage = ref(storage, `fotos/${nombreUUID}.${extension}`)
