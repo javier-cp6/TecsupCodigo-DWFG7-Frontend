@@ -26,7 +26,6 @@ const crearLugar = async(nuevoLugar) => {
     }
 }
 
-// 12.05
 const obtenerLugarPorId = async(idCat, idLugar) => {
     try {
         const endpoint = `${URL}/categorias/${idCat}/lugares/${idLugar}`
@@ -47,7 +46,7 @@ const editarLugar = async(idCat, idLugar, lugarEditado) => {
             "Content-Type":"application/json"
         }
         const endpoint = `${URL}/categorias/${idCat}/lugares/${idLugar}`
-        const { data, status } = await axios.get(endpoint, lugarEditado, { headers})
+        const { data, status } = await axios.put(endpoint, lugarEditado, { headers})
         console.log(status)
         if(status === 200){
             return data
@@ -59,10 +58,25 @@ const editarLugar = async(idCat, idLugar, lugarEditado) => {
     }
 }
 
+const eliminarLugar = async (idCat, idLugar) => {
+    try {
+        const endpoint = `${URL}/categorias/${idCat}/lugares/${idLugar}`
+        const { status } = await axios.delete(endpoint)
+        console.log(status)
+        if(status === 200){
+            return "ok"
+        }else{
+            return Error("Error al eliminar lugar")
+        }
+    } catch (error) {
+        return error
+    }
+}
 
 export {
     crearLugar,
     obtenerLugarPorId,
-    editarLugar
+    editarLugar,
+    eliminarLugar
 }
 

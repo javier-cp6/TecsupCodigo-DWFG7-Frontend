@@ -1,13 +1,12 @@
 import {useEffect, useState, useRef} from 'react'
 import { obtenerCategorias } from '../services/categoriasService';
-import { crearLugar, obtenerLugarPorId } from '../services/lugaresService';
+import { editarLugar, obtenerLugarPorId } from '../services/lugaresService';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { MapContainer, TileLayer, Marker, useMapEvents, Popup } from "react-leaflet"
 import {subirArchivo} from "../config/fireStorage"
 import Cargando from "../components/Cargando"
 import {useParams} from "react-router-dom"
-
 
 let miArchivo = null
 
@@ -22,10 +21,8 @@ export default function EditarLugarView() {
 
     const [categorias, setCategorias] = useState([])
 
-    // 12.05
     const [loading, setLoading ] = useState(false)
 
-    
     // estado para marcador de mapa [lat, long]
     // const [marcador, setMarcador] = useState([-12, -77])
 
@@ -38,7 +35,11 @@ export default function EditarLugarView() {
 
     const navigate = useNavigate()
 
+    // useParams permite obtener los parámetros que se tengan en la URL
+    // const params = useParams()
+    // console.log({params})
     const { idCat, idLugar } = useParams()
+    // console.log({ idCat, idLugar })
 
     const manejarInputs = (e) => {
         // console.log(e.target.name, e.target.value)
@@ -53,8 +54,6 @@ export default function EditarLugarView() {
     const manejarSubmit = async (e) => {
         e.preventDefault()
         try {
-            // 12.05
-            // setLoading antes de ejecutar las funciones para subir un archivo y crear lugar
             setLoading(true)
 
             // aregado el 11.05
@@ -62,13 +61,13 @@ export default function EditarLugarView() {
             console.log({archivoSubido})
             // await crearLugar(inputs)
             // 12.05
-            await crearLugar({...inputs, lug_img:archivoSubido})
+            await editarLugar(idCat, idLugar, {...inputs, lug_img:archivoSubido})
 
             setLoading(false)
             
             Swal.fire({
                 icon:"success",
-                title:"Lugar creado!"
+                title:"Lugar modificadao!"
             })
             navigate("/lugares")
         } catch (error) {
@@ -107,7 +106,7 @@ export default function EditarLugarView() {
     useEffect(() => {
         const getCategorias = async () => {
             try {
-                // aquí se obtienen las categorías
+                // 1. se obtienen las categorías
                 const categoriasObtenidas = await obtenerCategorias()
                 // console.log({categoriasObtenidas}) // array de objetos (categorías)
                 // solamente se requiere id y nom
@@ -118,7 +117,7 @@ export default function EditarLugarView() {
                 // console.log({infoCategorias}) // array de objetos
                 setCategorias(infoCategorias)
 
-                // después se obtiene el lugar a editar
+                // 2. se obtiene el lugar a editar
                 const lugarAEditar = await obtenerLugarPorId(idCat, idLugar)
                 console.log({lugarAEditar})
                 setInputs(lugarAEditar)
@@ -140,7 +139,7 @@ export default function EditarLugarView() {
     return (
         <div>
             <h1 className="mb-3">
-                Crear Lugar
+                Editar Lugar
             </h1>
             <form onSubmit={(e) => {manejarSubmit(e)}}>
                 <div className="mb-3">

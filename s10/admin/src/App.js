@@ -42,12 +42,12 @@ export default function App() {
             <Route path="/lugares" element={<LugaresView />} />
             <Route path="/crearlugar" element={<CrearLugarView />} />
 
-            {/* al declarar path="/direccion/:param" se está indicando que en esa dirección se va a recibir un parámetro */}
-            <Route path="/editarlugar/:idCat/:idLugar" element={<EditarLugarView />} />
+            {/* al declarar path="/direccion/:param", con :param se está indicando que en esa dirección se va a recibir un parámetro */}
+            <Route path="/editarlugar/idCat=:idCat/idLugar=:idLugar" element={<EditarLugarView />} />
           </Routes>
         </div>
       </Router>
-      {/* eliminar componentes para que se vean en vistas independientes */}
+      {/* eliminar componentes para que se muestren en vistas independientes */}
       {/* <DashboardView />
       <CrearCategoriaView /> */}
     </>
