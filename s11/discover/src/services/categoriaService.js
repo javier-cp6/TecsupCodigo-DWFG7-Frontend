@@ -4,6 +4,7 @@ const URL = process.env.REACT_APP_API;
 
 const obtenerCategorias = async (page = 1, limit = 10) => {
     try {
+        // “?” para indicar que se va a pasar un argumento y “&” cuando son varios.  
         //url.com?arg1=valor_arg1&arg2=valor_arg2&arg3=valor_Arg3
         const { data, status } = await axios.get(`${URL}/categorias?page=${page}&limit=${limit}`);
         if(status === 200) return data
