@@ -1,11 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { obtenerLugar } from "../services/lugarService";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
+// para utilizar un context, se requiere importar: useContext de React y el contexto en sí
+import { FavoritosContext } from "../context/favoritosContext";
+
+// DatePicker
+import TextField from '@mui/material/TextField'; 
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'; 
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; 
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 export default function DetalleLugarView() {
   const [miLugar, setMiLugar] = useState(null);
+
+  const [ fecha, setFecha ] = useState(null)
+
   const { catId, lugId } = useParams();
+
+  // const contexto = useContext(FavoritosContext)
+  const { favoritos, anadirAFavoritos } = useContext(FavoritosContext)
+  console.log(favoritos, anadirAFavoritos)
 
   useEffect(() => {
     const getLugar = async () => {
@@ -27,7 +43,13 @@ export default function DetalleLugarView() {
     */}
       {miLugar ? (
         <div>
-          <h2>{miLugar.lug_nom}</h2>
+          <div className="d-flex justify-content-between">
+            <h2>{miLugar.lug_nom}</h2>
+            <button className="btn btn-outline-success" onClick={() => {anadirAFavoritos(miLugar)}}>
+              Agregar a favoritos
+            </button>
+          </div>
+
           <div className="row mt-4">
             <div className="col-12 col-lg-8">
               <p>
@@ -38,6 +60,21 @@ export default function DetalleLugarView() {
                 <img src={miLugar.lug_img} alt={miLugar.lug_nom} />
               </div>
             </div>
+
+            {/* DatePicker */}
+            <div className="col-12 col-lg-4">
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  label="Fecha de reserva"
+                  value={fecha}
+                  onChange={(nuevaFecha) => {
+                    setFecha(nuevaFecha);
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            </div>
+
             <p className="lead mt-3">{miLugar.lug_desc}</p>
             <MapContainer 
               style={{ height: "500px" }}
