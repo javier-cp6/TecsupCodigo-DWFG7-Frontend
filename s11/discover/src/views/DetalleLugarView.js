@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { obtenerLugar } from "../services/lugarService";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 // para utilizar un context, se requiere importar: useContext de React y el contexto en sí
 import { FavoritosContext } from "../context/favoritosContext";
+import { AuthContext } from "../context/authContext";
 
 // DatePicker
 import TextField from '@mui/material/TextField'; 
@@ -17,11 +18,23 @@ export default function DetalleLugarView() {
 
   const [ fecha, setFecha ] = useState(null)
 
+  const navigate = useNavigate()
+
   const { catId, lugId } = useParams();
 
   // const contexto = useContext(FavoritosContext)
   const { favoritos, anadirAFavoritos } = useContext(FavoritosContext)
   console.log(favoritos, anadirAFavoritos)
+
+  const { user } = useContext(AuthContext)
+
+  const addAFavoritos = () => {
+    if(user){
+      anadirAFavoritos(miLugar)
+    }else{
+      navigate('/login')
+    }
+  }
 
   useEffect(() => {
     const getLugar = async () => {
@@ -45,39 +58,52 @@ export default function DetalleLugarView() {
         <div>
           <div className="d-flex justify-content-between">
             <h2>{miLugar.lug_nom}</h2>
-            <button className="btn btn-outline-success" onClick={() => {anadirAFavoritos(miLugar)}}>
+            {/* <button className="btn btn-outline-success" onClick={() => {anadirAFavoritos(miLugar)}}>
+              Agregar a favoritos
+            </button> */}
+            <button className="btn btn-outline-success" onClick={addAFavoritos}>
               Agregar a favoritos
             </button>
           </div>
 
           <div className="row mt-4">
             <div className="col-12 col-lg-8">
-              <p>
-                <i className="fa-solid fa-location-dot me-2 text-success"></i>
-                {miLugar.lug_dir}
-              </p>
-              <div className="img-fluid">
+              <div className="img-fluid d-flex justify-content-center overflow-hidden">
                 <img src={miLugar.lug_img} alt={miLugar.lug_nom} />
               </div>
             </div>
 
             {/* DatePicker */}
             <div className="col-12 col-lg-4">
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  label="Fecha de reserva"
-                  value={fecha}
-                  onChange={(nuevaFecha) => {
-                    setFecha(nuevaFecha);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
+              <div className="card">
+                <div className="card-body">
+                  <p>
+                    <i className="fa-solid fa-location-dot me-2 text-success"></i>
+                    {miLugar.lug_dir}
+                  </p>
+                  <p className="lead mt-3">{miLugar.lug_desc}</p>
+                
+                  <div className="d-flex flex-column">
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DatePicker
+                        label="Fecha de reserva"
+                        value={fecha}
+                        onChange={(nuevaFecha) => {
+                          setFecha(nuevaFecha);
+                        }}
+                        renderInput={(params) => <TextField {...params} />}
+                      />
+                    </LocalizationProvider>
+                  </div>
+                <div className="d-grid">
+                  <button className="btn btn-success mt-2" disabled={!user ? true : false}>Reservar!</button>
+                </div>
+              </div>
             </div>
-
-            <p className="lead mt-3">{miLugar.lug_desc}</p>
+          </div>
+            
             <MapContainer 
-              style={{ height: "500px" }}
+              style={{ height: "500px", marginTop: "20px" }}
               center={miLugar.lug_coords}
               zoom={18}
             >
