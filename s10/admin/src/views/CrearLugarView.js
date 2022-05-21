@@ -53,7 +53,7 @@ export default function CrearLugarView() {
 
             // aregado el 11.05
             const archivoSubido = await subirArchivo(miArchivo)
-            console.log({archivoSubido}) // url de Firebase
+            // console.log({archivoSubido}) // url de Firebase
             
             // await crearLugar(inputs)
             await crearLugar({...inputs, lug_img:archivoSubido})
@@ -62,7 +62,7 @@ export default function CrearLugarView() {
             
             Swal.fire({
                 icon:"success",
-                title:"Lugar creado!"
+                title:"Place added!"
             })
             navigate("/lugares")
         } catch (error) {
@@ -128,16 +128,16 @@ export default function CrearLugarView() {
     return (
         <div>
             <h1 className="mb-3">
-                Crear Lugar
+                Add place
             </h1>
             <form onSubmit={(e) => {manejarSubmit(e)}}>
                 <div className="mb-3">
                     <label  className="form-label">
-                        Nombre del lugar
+                        Name
                     </label>
                     <input 
                         type="text"
-                        placeholder='Ej. Cevichería Perú'
+                        placeholder='Place name'
                         className="form-control"
                         name="lug_nom"
                         value={inputs.lug_nom}
@@ -146,11 +146,11 @@ export default function CrearLugarView() {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="" className="form-label">
-                        Descripción
+                        Description
                     </label>
                     <input 
                         type="text"
-                        placeholder="Ingrese descripción"
+                        placeholder="Type a description for the place"
                         className="form-control"
                         name="lug_desc"
                         value={inputs.lug_desc}
@@ -159,11 +159,11 @@ export default function CrearLugarView() {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">
-                        Dirección
+                        Address
                     </label>
                     <input 
                         type="text"
-                        placeholder="Ingrese dirección"
+                        placeholder="Type address"
                         className="form-control"
                         name="lug_dir"
                         value={inputs.lug_dir}
@@ -172,7 +172,7 @@ export default function CrearLugarView() {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">
-                        Seleccione categoría
+                        Choose category
                     </label>
                     <select 
                         className="form-select"
@@ -191,7 +191,7 @@ export default function CrearLugarView() {
                 {/* agregado el 11.05 */}
                 <div className="mb-3">
                     <label className="form-label">
-                        Seleccione imagen
+                        Choose image
                     </label>
                     <input 
                         type="file" className="form-control"
@@ -211,7 +211,7 @@ export default function CrearLugarView() {
                     {/* <Marker position={marcador} /> */}
                     <Marker position={inputs.lug_coords}>
                         <Popup>
-                            Información del Lugar {inputs.lug_nom}
+                            Place name {inputs.lug_nom}
                         </Popup>
                     </Marker>
                 </MapContainer>
@@ -220,7 +220,7 @@ export default function CrearLugarView() {
                     className="btn btn-primary" type="submit" 
                     disabled={existeErrorInputs()}
                 >
-                    Guardar
+                    Save
                 </button>
             </form>
         </div>

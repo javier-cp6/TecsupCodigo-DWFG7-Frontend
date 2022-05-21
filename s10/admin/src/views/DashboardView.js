@@ -21,10 +21,10 @@ export default function DashboardView() {
                     <thead>
                         <tr>
                             <th>
-                                Nombre
+                                Name
                             </th>
                             <th>
-                                Descripción
+                                Description
                             </th>
                         </tr>
                     </thead>

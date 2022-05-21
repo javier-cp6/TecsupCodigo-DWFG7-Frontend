@@ -27,7 +27,7 @@ const subirArchivo = (archivo) => {
             () => {
                 getDownloadURL(referenciaStorage)
                 .then((url) => {
-                    console.log({url})
+                    // console.log({url})
                     resolve(url)
                 })
             }    

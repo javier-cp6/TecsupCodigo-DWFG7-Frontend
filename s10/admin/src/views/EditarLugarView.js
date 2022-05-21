@@ -67,7 +67,7 @@ export default function EditarLugarView() {
             
             Swal.fire({
                 icon:"success",
-                title:"Lugar modificadao!"
+                title:"Place modified!"
             })
             navigate("/lugares")
         } catch (error) {

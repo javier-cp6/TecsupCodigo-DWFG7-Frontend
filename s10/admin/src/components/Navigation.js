@@ -15,10 +15,10 @@ export default function Navigation() {
                   Dashboard
                 </Link>
                 <Link className="nav-link" to="/crearcategoria">
-                  Crear Categoría
+                  Create Category
                 </Link>
                 <Link className="nav-link" to="/lugares">
-                  Ver Lugares
+                  Places
                 </Link>
               </Nav>
             </Navbar.Collapse>

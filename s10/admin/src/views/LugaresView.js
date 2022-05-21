@@ -10,15 +10,15 @@ export default function LugaresView() {
   const deleteLugar = async (idCat, idLugar) => {
     try {
       const resultado = await Swal.fire({
-        title: '¿Desea eliminar lugar?',
+        title: 'Do you want to delete this place?',
         showCancelButton: true,
-        confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: `No, cancelar`,
+        confirmButtonText: 'Yes, delete',
+        cancelButtonText: `No, cancel`,
       })
       if(resultado.isConfirmed){
         await eliminarLugar(idCat, idLugar)
         Swal.fire({
-          title:"Lugar eliminado",
+          title:"Place deleted",
           icon:"success"
         })
         getCategorias()
@@ -50,19 +50,19 @@ export default function LugaresView() {
   return (
     <div>
       <h1 className="mb-3">
-        Lugares
+        Places
       </h1>
       {/* cambiar button por Link */}
       <Link className="btn btn-success mb-2" to="/crearlugar">
-        Crear nuevo lugar
+        Add new place
       </Link>
       <table className="table">
         <thead>
           <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Dirección</th>
-            <th>Acciones</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Address</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
