@@ -6,7 +6,7 @@ export const FavoritosContext = createContext()
 // 3. crear provider (función que se va a parecer a un componente)
 const FavoritosContextProvider = (props) => {
     const [ favoritos, setFavoritos ] = useState([])
-    // 4. definir una función que haga uso de setFavoritos, pero que reciba nueos valores para agregar y de ser necesario realice validaciones
+    // 4. definir una función que haga uso de setFavoritos (que reciba nuevos valores para agregar) y de ser necesario realice validaciones
 
     const anadirAFavoritos = (lugar) => {
         setFavoritos([...favoritos, lugar])
@@ -14,7 +14,7 @@ const FavoritosContextProvider = (props) => {
 
     // useEffect para 2 situaciones: cuando inicia o cuando cambia el contexto
     useEffect(() => {
-        const favoritosStorage = JSON.parse(localStorage.getItem("descrubre_favoritos"))
+        const favoritosStorage = JSON.parse(localStorage.getItem("descubre_favoritos"))
         console.log({favoritosStorage})
         if(favoritosStorage){
             setFavoritos(favoritosStorage)

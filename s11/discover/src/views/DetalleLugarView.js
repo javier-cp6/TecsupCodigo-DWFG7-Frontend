@@ -50,10 +50,7 @@ export default function DetalleLugarView() {
 
   return (
     <>
-      {/* puede pasar que al querer renderizar a partir de un objeto, una variable, un estado, un props
-      Esa referencia no tenga una propiedad que uds busquen, ahí preguntamos si existe con un operador ternario
-      y renderizamos una cosa u otra
-    */}
+      {/* puede pasar que al querer renderizar a partir de un objeto, una variable, un estado, un props, etc. esa referencia no tenga una propiedad que se esté buscando. En ese caso, se puede realizar una validación con un operador ternario y renderizar una cosa u otra */}
       {miLugar ? (
         <div>
           <div className="d-flex justify-content-between">
