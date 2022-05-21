@@ -13,10 +13,15 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'; 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+import { crearReserva } from "../services/reservaService";
+import Swal from "sweetalert2"
+
 export default function DetalleLugarView() {
   const [miLugar, setMiLugar] = useState(null);
 
   const [ fecha, setFecha ] = useState(null)
+
+  // console.log("feecha", fecha.getTime())
 
   const navigate = useNavigate()
 
@@ -33,6 +38,23 @@ export default function DetalleLugarView() {
       anadirAFavoritos(miLugar)
     }else{
       navigate('/login')
+    }
+  }
+
+  const manejarReserva = async () => {
+    try {
+      const nuevaReserva = {
+        res_fecha:fecha.getTime(), //timestamp
+        lug_id: lugId,
+        uid:user.uid
+      }
+      await crearReserva(nuevaReserva)
+      Swal.fire({
+        icon:"success",
+        title:"Reserva Creada"
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -65,8 +87,8 @@ export default function DetalleLugarView() {
 
           <div className="row mt-4">
             <div className="col-12 col-lg-8">
-              <div className="img-fluid d-flex justify-content-center overflow-hidden">
-                <img src={miLugar.lug_img} alt={miLugar.lug_nom} />
+              <div className="div-img-detalle img-fluid d-flex justify-content-center overflow-hidden">
+                <img className="img-detalle" src={miLugar.lug_img} alt={miLugar.lug_nom} />
               </div>
             </div>
 
