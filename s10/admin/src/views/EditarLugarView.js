@@ -3,7 +3,7 @@ import { obtenerCategorias } from '../services/categoriasService';
 import { editarLugar, obtenerLugarPorId } from '../services/lugaresService';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { MapContainer, TileLayer, Marker, useMapEvents, Popup } from "react-leaflet"
+import { MapContainer, TileLayer, Marker, useMapEvents, Popup, useMap } from "react-leaflet"
 import {subirArchivo} from "../config/fireStorage"
 import Cargando from "../components/Cargando"
 import {useParams} from "react-router-dom"
@@ -11,13 +11,7 @@ import {useParams} from "react-router-dom"
 let miArchivo = null
 
 export default function EditarLugarView() {
-    const [inputs, setInputs] = useState({
-        lug_nom:"",
-        lug_desc:"",
-        lug_dir:"",
-        categoriaId:1,
-        lug_coords: [-12.018, -77.005]
-    })
+    const [inputs, setInputs] = useState(null)
 
     const [categorias, setCategorias] = useState([])
 
@@ -137,102 +131,108 @@ export default function EditarLugarView() {
     }
 
     return (
-        <div>
-            <h1 className="mb-3">
-                Edit place
-            </h1>
-            <form onSubmit={(e) => {manejarSubmit(e)}}>
-                <div className="mb-3">
-                    <label  className="form-label">
-                        Place name
-                    </label>
-                    <input 
-                        type="text"
-                        placeholder='E.g. Restaurant ABC'
-                        className="form-control"
-                        name="lug_nom"
-                        value={inputs.lug_nom}
-                        onChange={(e) => {manejarInputs(e)}}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="" className="form-label">
-                        Description
-                    </label>
-                    <input 
-                        type="text"
-                        placeholder="Type a description for the place"
-                        className="form-control"
-                        name="lug_desc"
-                        value={inputs.lug_desc}
-                        onChange={(e) => {manejarInputs(e)}}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">
-                        Address
-                    </label>
-                    <input 
-                        type="text"
-                        placeholder="Type address"
-                        className="form-control"
-                        name="lug_dir"
-                        value={inputs.lug_dir}
-                        onChange={(e) => {manejarInputs(e)}}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">
-                        Choose a category
-                    </label>
-                    <select 
-                        className="form-select"
-                        name="categoriaId"
-                        value={inputs.categoriaId}
-                        onChange={(e) => manejarInputs(e)}
-                    >
-                        {categorias.map(({cat_id, cat_nom}, i) => (
-                            <option value={cat_id} key={i}>
-                                {cat_nom}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+        <>
+            {inputs ? (
+                <div>
+                    <h1 className="mb-3">
+                        Edit place
+                    </h1>
+                    <form onSubmit={(e) => {manejarSubmit(e)}}>
+                        <div className="mb-3">
+                            <label  className="form-label">
+                                Place name
+                            </label>
+                            <input 
+                                type="text"
+                                placeholder='E.g. Restaurant ABC'
+                                className="form-control"
+                                name="lug_nom"
+                                value={inputs.lug_nom}
+                                onChange={(e) => {manejarInputs(e)}}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="" className="form-label">
+                                Description
+                            </label>
+                            <input 
+                                type="text"
+                                placeholder="Type a description for the place"
+                                className="form-control"
+                                name="lug_desc"
+                                value={inputs.lug_desc}
+                                onChange={(e) => {manejarInputs(e)}}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">
+                                Address
+                            </label>
+                            <input 
+                                type="text"
+                                placeholder="Type address"
+                                className="form-control"
+                                name="lug_dir"
+                                value={inputs.lug_dir}
+                                onChange={(e) => {manejarInputs(e)}}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">
+                                Choose a category
+                            </label>
+                            <select 
+                                className="form-select"
+                                name="categoriaId"
+                                value={inputs.categoriaId}
+                                onChange={(e) => manejarInputs(e)}
+                            >
+                                {categorias.map(({cat_id, cat_nom}, i) => (
+                                    <option value={cat_id} key={i}>
+                                        {cat_nom}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
 
-                {/* agregado el 11.05 */}
-                <div className="mb-3">
-                    <label className="form-label">
-                        Upload an image
-                    </label>
-                    <input 
-                        type="file" className="form-control"
-                        ref={inputFile}
-                        onChange={(e) => {manejarFile(e)} } />
+                        {/* agregado el 11.05 */}
+                        <div className="mb-3">
+                            <label className="form-label">
+                                Upload an image
+                            </label>
+                            <input 
+                                type="file" className="form-control"
+                                ref={inputFile}
+                                onChange={(e) => {manejarFile(e)} } />
+                        </div>
+
+                        <MapContainer
+                            center={inputs.lug_coords}
+                            zoom={15}
+                            style={{height:"400px"}}
+                        >
+                            {/* Tileyaer es el proveedor de datos para el mapa */}
+                            <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            />
+                            <AddMarker />
+                            <Marker position={inputs.lug_coords}>
+                                <Popup>
+                                    Place name {inputs.lug_nom}
+                                </Popup>
+                            </Marker>
+                        </MapContainer>
+
+                        <button 
+                            className="btn btn-primary" type="submit" 
+                            disabled={existeErrorInputs()}
+                        >
+                            Save
+                        </button>
+                    </form>
                 </div>
-
-                <MapContainer
-                    center={inputs.lug_coords}
-                    zoom={15}
-                    style={{height:"400px"}}
-                >
-                    {/* Tileyaer es el proveedor de datos para el mapa */}
-                    <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <AddMarker />
-                    <Marker position={inputs.lug_coords}>
-                        <Popup>
-                            Place name {inputs.lug_nom}
-                        </Popup>
-                    </Marker>
-                </MapContainer>
-
-                <button 
-                    className="btn btn-primary" type="submit" 
-                    disabled={existeErrorInputs()}
-                >
-                    Save
-                </button>
-            </form>
-        </div>
+            ) : (
+                <p>Loading...</p>
+            )}
+        </>
     )
 }
