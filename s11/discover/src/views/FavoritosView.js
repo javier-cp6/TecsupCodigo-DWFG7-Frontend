@@ -6,7 +6,7 @@ export default function FavoritosView() {
 
   return (
     <>
-      <h1 className="mb-3">Mis Favoritos</h1>
+      <h1 className="mb-3">My Favorite Places</h1>
       {favoritos.length > 0 ? (
         <div>
           {favoritos.map((item, i) => (
@@ -36,7 +36,7 @@ export default function FavoritosView() {
           ))}
         </div>
       ) : (
-        <h4>Todavia no ha seleccionado lugares como favoritos</h4>
+        <h4>No bookmark has been added yet</h4>
       )}
     </>
   );

@@ -19,17 +19,16 @@ import Swal from "sweetalert2"
 export default function DetalleLugarView() {
   const [miLugar, setMiLugar] = useState(null);
 
-  const [ fecha, setFecha ] = useState(null)
-
-  // console.log("feecha", fecha.getTime())
+  const [ fecha, setFecha ] = useState(new Date())
 
   const navigate = useNavigate()
 
   const { catId, lugId } = useParams();
 
   // const contexto = useContext(FavoritosContext)
+  // console.log(FavoritosContext)
   const { favoritos, anadirAFavoritos } = useContext(FavoritosContext)
-  console.log(favoritos, anadirAFavoritos)
+  // console.log(favoritos, anadirAFavoritos)
 
   const { user } = useContext(AuthContext)
 
@@ -51,7 +50,7 @@ export default function DetalleLugarView() {
       await crearReserva(nuevaReserva)
       Swal.fire({
         icon:"success",
-        title:"Reserva Creada"
+        title:"Your reservation was booked"
       })
     } catch (error) {
       console.log(error)
@@ -81,12 +80,12 @@ export default function DetalleLugarView() {
               Agregar a favoritos
             </button> */}
             <button className="btn btn-outline-success" onClick={addAFavoritos}>
-              Agregar a favoritos
+              Add to bookmarks
             </button>
           </div>
 
           <div className="row mt-4">
-            <div className="col-12 col-lg-8">
+            <div className="col-12 col-lg-8 mb-3">
               <div className="div-img-detalle img-fluid d-flex justify-content-center overflow-hidden">
                 <img className="img-detalle" src={miLugar.lug_img} alt={miLugar.lug_nom} />
               </div>
@@ -105,17 +104,18 @@ export default function DetalleLugarView() {
                   <div className="d-flex flex-column">
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <DatePicker
-                        label="Fecha de reserva"
+                        label="Choose booking date"
                         value={fecha}
                         onChange={(nuevaFecha) => {
                           setFecha(nuevaFecha);
+                          // console.log(nuevaFecha.getTime())
                         }}
                         renderInput={(params) => <TextField {...params} />}
                       />
                     </LocalizationProvider>
                   </div>
                 <div className="d-grid">
-                  <button className="btn btn-success mt-2" disabled={!user ? true : false}>Reservar!</button>
+                  <button className="btn btn-success mt-2" disabled={!user ? true : false} onClick={manejarReserva}>Book now!</button>
                 </div>
               </div>
             </div>
@@ -126,22 +126,22 @@ export default function DetalleLugarView() {
               center={miLugar.lug_coords}
               zoom={18}
             >
-               <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Marker position={miLugar.lug_coords}>
-                  <Popup>
-                    <i className="fa-solid fa-location-arrow text-success me-2 fa-2x"></i>
-                    <h6>{miLugar.lug_nom}</h6>
-                    <small>{miLugar.lug_desc}</small>
-                  </Popup>
-                </Marker>
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={miLugar.lug_coords}>
+                <Popup>
+                  <i className="fa-solid fa-location-arrow text-success me-2 fa-2x"></i>
+                  <h6>{miLugar.lug_nom}</h6>
+                  <small>{miLugar.lug_desc}</small>
+                </Popup>
+              </Marker>
             </MapContainer>
           </div>
         </div>
       ) : (
-        <p>Cargando...</p>
+        <p>Loading...</p>
       )}
     </>
   );

@@ -13,18 +13,18 @@ export default function BarNavigation() {
     return (
       <Navbar bg="success" variant="dark">
         <Container>
-          <Navbar.Brand> Descubre App </Navbar.Brand>
+          <Navbar.Brand> Discover App </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
-            <Nav className="me-auto">
+            <Nav className="me-auto align-items-end">
               <Link className="nav-link" to="/">
-                Inicio
+                Home
               </Link>
               {user ? (
                 <Link className="nav-link" to="/favoritos">
 
                   <Badge badgeContent={favoritos.length} color="success" >
-                      Mis favoritos
+                      Bookmarks
                   </Badge>
 
                 </Link>
@@ -48,10 +48,10 @@ export default function BarNavigation() {
                   </div>
                 }
               >
-                <NavDropdown.Item onClick={salir}>Salir</NavDropdown.Item>
+                <NavDropdown.Item onClick={salir}>Logout</NavDropdown.Item>
               </NavDropdown>
               ):(
-                <Link className="nav-link" to="/login">Ingresa</Link>
+                <Link className="nav-link" to="/login">Login</Link>
               )}
             </Nav>
           </Navbar.Collapse>

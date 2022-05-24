@@ -15,7 +15,7 @@ const FavoritosContextProvider = (props) => {
     // useEffect para 2 situaciones: cuando inicia o cuando cambia el contexto
     useEffect(() => {
         const favoritosStorage = JSON.parse(localStorage.getItem("descubre_favoritos"))
-        console.log({favoritosStorage})
+        // console.log({favoritosStorage})
         if(favoritosStorage){
             setFavoritos(favoritosStorage)
         }

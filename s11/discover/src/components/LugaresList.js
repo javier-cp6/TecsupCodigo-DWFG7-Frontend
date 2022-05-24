@@ -18,7 +18,7 @@ export default function LugaresList({ misCategorias }) {
               <h5 className="card-title">{lug_nom}</h5>
               <p className="card-text">{lug_desc}</p>
               <Link className="btn btn-success" to={`/detallelugar/${categoriaId}/${lug_id}`}>
-                Conocer Lugar
+                Explore place
               </Link>
             </div>
           </div>

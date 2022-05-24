@@ -9,17 +9,18 @@ export default function LoginView() {
   const navigate = useNavigate()
 
   const loguear = async () => {
-    const ropta = await signInGoogle()
-    if(ropta.user.uid){
+    const rpta = await signInGoogle()
+    if(rpta.user.uid){
+      // console.log(rpta)
       navigate('/')
     }
   }
 
   return (
     <div>
-      <h1 className='mb-3'>Ingresa con Google!</h1>
-      <button className='btn btn-danger btn-lg' onClick={signInGoogle}>
-        Ingresa
+      <h1 className='mb-3'>Login with your Google account!</h1>
+      <button className='btn btn-danger btn-lg' onClick={loguear}>
+        Login
       </button>
     </div>
   )

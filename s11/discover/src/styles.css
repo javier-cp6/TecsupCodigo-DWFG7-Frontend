@@ -8,7 +8,7 @@
 }
 
 .img-detalle {
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .card-categoria {

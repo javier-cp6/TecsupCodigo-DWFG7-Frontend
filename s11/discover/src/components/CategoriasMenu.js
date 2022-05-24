@@ -19,7 +19,7 @@ export default function CategoriasMenu() {
   return (
     <div>
       <h4 className="mb-3">
-        Seleccione una categoría
+        Choose a category
       </h4>
       <ul className="list-group menu-categorias">
         {categorias.map(({cat_nom, cat_id}, i) => (

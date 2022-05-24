@@ -20,9 +20,9 @@ export default function CategoriaView() {
         getCategoria()
     }, [catId])
 
-    // si la categoría no está lista, muestra Cargando. Así también se evita que se muestre un mensaje de error
+    // si la categoría no está lista (inicialmente es null), muestra Cargando. Así también se evita que se muestre un mensaje de error
     if(!categoria) {
-        return <h4>Cargando...</h4>
+        return <h4>Loading...</h4>
     }
 
     return (
@@ -32,7 +32,7 @@ export default function CategoriaView() {
             <CategoriasMenu />
         </div>
         <div className="col-12 col-md-8">
-          <h4 className="mb-3">Lugares recomendados</h4>
+          <h4 className="mb-3">Recommended places</h4>
           <div className="row">
             {categoria.lugares.map(
               (
@@ -53,7 +53,7 @@ export default function CategoriaView() {
                         className="btn btn-success"
                         to={`/detallelugar/${categoriaId}/${lug_id}`}
                       >
-                        Conocer Lugar
+                        Explore place
                       </Link>
                     </div>
                   </div>

@@ -50,7 +50,7 @@ export default function CategoriasList() {
         ))}
       </div>
       <button className="btn btn-outline-success btn-sm" onClick={manejarVerMas}>
-        Ver más...
+        View more...
       </button>
       <LugaresList misCategorias={misCategorias} />
     </div>
