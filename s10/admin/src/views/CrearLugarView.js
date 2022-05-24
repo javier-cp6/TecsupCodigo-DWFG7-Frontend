@@ -172,7 +172,7 @@ export default function CrearLugarView() {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">
-                        Choose category
+                        Choose a category
                     </label>
                     <select 
                         className="form-select"
@@ -191,7 +191,7 @@ export default function CrearLugarView() {
                 {/* agregado el 11.05 */}
                 <div className="mb-3">
                     <label className="form-label">
-                        Choose image
+                        Upload an image
                     </label>
                     <input 
                         type="file" className="form-control"
