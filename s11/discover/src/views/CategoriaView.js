@@ -39,7 +39,7 @@ export default function CategoriaView() {
                 { lug_nom, lug_dir, lug_desc, lug_img, lug_id, categoriaId },
                 i
               ) => (
-                <div className="col-md-12 col-lg-4" key={i}>
+                <div className="card-group col-md-12 col-lg-4" key={i}>
                   <div className="card mb-3">
                     <img src={lug_img} className="card-img-top" alt={lug_nom} />
                     <div className="card-body">
