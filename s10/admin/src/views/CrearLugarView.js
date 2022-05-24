@@ -29,7 +29,7 @@ export default function CrearLugarView() {
     // agregado el 11.05
     const inputFile = useRef()
     const manejarFile = (e) => {
-        console.log("manejarFile", e)
+        // console.log("manejarFile", e)
         miArchivo = e.target.files[0]
     }
 
@@ -88,7 +88,7 @@ export default function CrearLugarView() {
         const map = useMapEvents({
             click: (e) => {
                 // revisar el objeto que trae lat y lng
-                console.log(e)
+                // console.log(e)
                 const {lat, lng} = e.latlng;
                 // setMarcador([lat, lng])
                 setInputs({

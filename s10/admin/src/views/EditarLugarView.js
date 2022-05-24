@@ -29,7 +29,7 @@ export default function EditarLugarView() {
     // agregado el 11.05
     const inputFile = useRef()
     const manejarFile = (e) => {
-        console.log("manejarFile", e.target.files)
+        // console.log("manejarFile", e.target.files)
         miArchivo = e.target.files[0]
     }
 
@@ -58,7 +58,7 @@ export default function EditarLugarView() {
 
             // aregado el 11.05
             const archivoSubido = await subirArchivo(miArchivo)
-            console.log({archivoSubido})
+            // console.log({archivoSubido})
             // await crearLugar(inputs)
             // 12.05
             await editarLugar(idCat, idLugar, {...inputs, lug_img:archivoSubido})
@@ -92,7 +92,7 @@ export default function EditarLugarView() {
         const map = useMapEvents({
             click: (e) => {
                 // revisar el objeto que trae lat y lng
-                console.log(e)
+                // console.log(e)
                 const {lat, lng} = e.latlng;
                 setInputs({
                     ...inputs,
@@ -119,7 +119,7 @@ export default function EditarLugarView() {
 
                 // 2. se obtiene el lugar a editar
                 const lugarAEditar = await obtenerLugarPorId(idCat, idLugar)
-                console.log({lugarAEditar})
+                // console.log({lugarAEditar})
                 setInputs(lugarAEditar)
             } catch (error) {
                 console.log(error)

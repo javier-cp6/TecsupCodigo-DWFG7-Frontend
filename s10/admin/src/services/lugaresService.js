@@ -47,7 +47,7 @@ const editarLugar = async(idCat, idLugar, lugarEditado) => {
         }
         const endpoint = `${URL}/categorias/${idCat}/lugares/${idLugar}`
         const { data, status } = await axios.put(endpoint, lugarEditado, { headers})
-        console.log(status)
+        // console.log(status)
         if(status === 200){
             return data
         }else{
@@ -62,7 +62,7 @@ const eliminarLugar = async (idCat, idLugar) => {
     try {
         const endpoint = `${URL}/categorias/${idCat}/lugares/${idLugar}`
         const { status } = await axios.delete(endpoint)
-        console.log(status)
+        // console.log(status)
         if(status === 200){
             return "ok"
         }else{

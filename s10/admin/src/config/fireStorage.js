@@ -8,7 +8,7 @@ const subirArchivo = (archivo) => {
     // se complica utilizar async/await porque está manejado con callbacks
     return new Promise ((resolve, reject) => {
         const extension = archivo.type.split("/")[1]
-        console.log({extension})
+        // console.log({extension})
         const nombreUUID = v4()
 
         // referencia de dirección y nombre del archivo a guardar

@@ -21,12 +21,12 @@ export default function CrearCategoriaView() {
 
     const inputFile = useRef()
     const manejarFile = (e) => {
-        console.log("manejarFile", e)
+        // console.log("manejarFile", e)
         miArchivo = e.target.files[0]
     }
 
     const manejarInput = (e) => {
-        console.log("NAME", e.target.name, "VALUE", e.target.value)
+        // console.log("NAME", e.target.name, "VALUE", e.target.value)
         setInput({
             // spread operator para modificar propiedades del objeto input
             ...input,
@@ -42,9 +42,9 @@ export default function CrearCategoriaView() {
             setLoading(true)
 
             const archivoSubido = await subirArchivo(miArchivo)
-            console.log({archivoSubido}) // url de Firebase
+            // console.log({archivoSubido}) // url de Firebase
 
-            await crearCategoria({...input, lug_img:archivoSubido})
+            await crearCategoria({...input, cat_img:archivoSubido})
             // reemplazar alert por sweetalert
             // alert("Categoria creada")
 
