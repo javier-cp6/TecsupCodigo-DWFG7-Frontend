@@ -1,1 +1,40 @@
 <h4>header works!</h4>
+
+<ul>
+  <!-- ngFor -->
+  <!-- hobbies.map((activ) => {
+    <li>activ</li>
+  }) -->
+  <li *ngFor="let activ of hobbies">{{activ}}</li>
+</ul>
+<div>
+  <p>Se peude ejecutar código de JS con doble llaves</p>
+  {{100 + 50}}
+</div>
+
+<!-- ngIf -->
+<!-- renderizado condicional -->
+<div *ngIf="meQuiere else noMeQuiere">
+  Les deseo lo mejor 
+</div>
+
+<!-- comodín -->
+<ng-template #noMeQuiere>
+  No me quiere -> party hard
+</ng-template>
+
+<!-- PropertyBinding []: va del .ts al .html -->
+<img [src]="url" alt="img">
+<br>
+
+<!-- EventBinding ( va del .html al .ts) -->
+<button (click) = "agregarNuevoHobby()">
+  Nuevo Hobby!
+</button>
+
+<!-- two-way binding - ngModel -->
+<input 
+  type="text"
+  placeholder="Ingresar hobby"
+  [(ngModel)]="nuevoHobby"
+>
